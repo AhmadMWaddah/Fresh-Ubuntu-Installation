@@ -167,3 +167,123 @@ This project is licensed under the MIT License. You can view the full text of th
 ---
 
 This documentation provides a full explanation of the system automation scripts, how to use them, and their key features and packages. The scripts are designed to simplify system setup and maintenance, while ensuring that important configurations and applications are installed correctly.
+
+
+---
+
+
+# Snap Totally Removal Documentation
+
+This script is designed to completely remove Snap from an Ubuntu-based system. It ensures a clean removal of all Snap-related files and directories, preventing potential conflicts with traditional package managers or alternative application formats.
+
+---
+
+## Purpose:
+The `Snap Totally Removal` script automates the process of removing Snap and its associated components. This is especially useful for users who prefer to avoid Snap packages or experience issues with Snap-based applications.
+
+---
+
+## Key Features:
+1. **Uninstall Snapd**:
+   - Removes the `snapd` package and its dependencies.
+   - Ensures no traces of the Snap service remain active on the system.
+
+2. **Purge Snap Directories**:
+   - Deletes all files and directories created by Snap, including:
+     - `/snap`
+     - `/var/snap`
+     - `/var/lib/snapd`
+     - `~/snap`
+
+3. **System Cleanup**:
+   - Ensures all residual files, configurations, and system references to Snap are removed.
+
+---
+
+## How to Use:
+
+### Prerequisites:
+- An Ubuntu-based system (20.04 or newer is recommended).
+- `sudo` privileges to execute system-level commands.
+
+### Execution:
+To run the script, execute the following command:
+```bash
+bash Snap_Totally_Removal.sh
+```
+
+This will:
+1. Prompt for confirmation before executing critical actions.
+2. Display progress messages for each step of the removal process.
+3. Provide a summary of actions performed upon completion.
+
+---
+
+## Key Steps Performed by the Script:
+
+### 1. Remove `snapd`:
+The script uninstalls Snap and its associated service using:
+```bash
+sudo apt remove --purge snapd -y
+```
+
+### 2. Delete Snap Directories:
+The following directories are recursively deleted to remove all traces of Snap:
+```bash
+sudo rm -rf /snap /var/snap /var/lib/snapd ~/snap
+```
+
+### 3. Update System Packages:
+To ensure a clean environment post-removal, the script updates the system:
+```bash
+sudo apt update && sudo apt upgrade -y
+```
+
+---
+
+## Post-Removal Recommendations:
+
+After running this script, consider installing alternative application formats like `.deb` packages, Flatpak, or AppImages for application management.
+
+For Flatpak, you can install and set it up using:
+```bash
+sudo apt install flatpak -y
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+```
+
+---
+
+## Requirements:
+- Ubuntu-based system (20.04 or newer).
+- `sudo` privileges.
+
+---
+
+## Contributing:
+
+If you'd like to improve or add features to this script, please fork the repository and follow the standard GitHub contribution workflow:
+
+1. Fork the repository.
+2. Create a feature branch:
+    ```bash
+    git checkout -b feature/your-feature-name
+    ```
+3. Commit your changes and push them to your fork.
+4. Open a pull request with a clear description of your changes.
+
+---
+
+## License:
+
+This project is licensed under the MIT License. You can view the full text of the MIT License [here](https://opensource.org/licenses/MIT).
+
+---
+
+## Acknowledgments:
+
+- Thanks to the open-source community for providing resources and tools that inspired the development of this script.
+- Special thanks to Ubuntu users who share best practices for system customization.
+
+---
+
+This documentation ensures clarity on the purpose, usage, and functionality of the Snap Totally Removal script, designed to simplify and automate the complete removal of Snap from Ubuntu systems.
